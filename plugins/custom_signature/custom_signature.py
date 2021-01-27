@@ -50,7 +50,7 @@ def custom_signature(color_option, image) :
 register(
     "python_fu_custom_signature",
     "Custom Signature",
-    "Add a Signature to an iamge",
+    "Add a Signature to an image",
     "Humberto Garza",
     "Humberto Garza",
     "2021",
