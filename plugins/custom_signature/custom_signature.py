@@ -8,12 +8,19 @@ from gimpfu import *
 
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 
-COLOR_OPTIONS = ["White", "Black"] 
+SIGNATURE_FILES = []
+SIGNATURES_PATH = os.path.join(CURRENT_PATH, "signatures")
+for root, dirs, files in os.walk(SIGNATURES_PATH):
+    SIGNATURE_FILES += files
 
-def custom_signature(color_option, image) :
+WATREMARK_FILES = []
+WATERMARKS_PATH = os.path.join(CURRENT_PATH, "watermarks")
+for root, dirs, files in os.walk(WATERMARKS_PATH):
+    WATREMARK_FILES += files
 
-    signature_file_name = "{}.png".format(COLOR_OPTIONS[color_option])
-    signature_file_path = os.path.join(CURRENT_PATH, "signatures", signature_file_name)
+
+def custom_signature(signature_file_name, image) :
+    signature_file_path = os.path.join(SIGNATURES_PATH, SIGNATURE_FILES[signature_file_name])
 
     # Open the signature on the current Image
     layer = pdb.gimp_file_load_layer(
@@ -57,7 +64,7 @@ register(
     "Custom Signature",
     "",
     [
-        (PF_OPTION, "string", "Color", 0, COLOR_OPTIONS),
+        (PF_OPTION, "string", "Signature File", 0, SIGNATURE_FILES),
         (PF_IMAGE, "image", "Input Image", None)
     ],
     [],
